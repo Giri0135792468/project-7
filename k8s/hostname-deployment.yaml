@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: hostname-deployment
+  namespace: project-7
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: hostname-app
+
+  template:
+    metadata:
+      labels:
+        app: hostname-app
+
+    spec:
+      containers:
+        - name: hostname
+          image: nginx:alpine
+
+          command:
+            - /bin/sh
+            - -c
+
+          args:
+            - |
+              echo "Hello from Pod: $(hostname)" > /usr/share/nginx/html/index.html
+              nginx -g "daemon off;"
