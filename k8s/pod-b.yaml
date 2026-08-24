@@ -5,6 +5,9 @@ metadata:
   name: pod-b
   namespace: project-7
 
+  labels:
+    app: pod-b
+
 spec:
   containers:
     - name: nginx
